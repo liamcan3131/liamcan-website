@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LiamCan | Clean Cans. Fresh Start.</title>
+<style>
+  :root {
+    --black: #0a0a0a;
+    --black-soft: #141414;
+    --black-card: #1c1c1c;
+    --green: #2ecc71;
+    --blue: #3498db;
+    --text-light: #f2f2f2;
+    --text-muted: #b3b3b3;
+    --border: #2a2a2a;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--black);
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  /* NAVBAR */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.95);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(6px);
+  }
+
+  .navbar {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 14px 20px;
+  }
+
+  .logo-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  .logo-group img {
+    height: 38px;
+    width: 38px;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  .logo-text {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .logo-text span {
+    color: var(--green);
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 8px;
+  }
+
+  nav ul li a {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  nav ul li a:hover {
+    background: var(--black-card);
+    color: var(--green);
+  }
+
+  nav ul li a.active {
+    background: var(--green);
+    color: var(--black);
+  }
+
+  .admin-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .admin-btn:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+  }
+
+  /* PAGE SECTIONS */
+  .page {
+    display: none;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .page.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 90px 20px 70px;
+    text-align: center;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(46, 204, 113, 0.08), transparent 40%),
+      radial-gradient(circle at 80% 30%, rgba(52, 152, 219, 0.08), transparent 40%),
+      var(--black);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero img.hero-logo {
+    height: 90px;
+    width: 90px;
+    object-fit: contain;
+    margin: 0 auto 18px;
+    border-radius: 16px;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+
+  .hero h1 .can {
+    color: var(--green);
+  }
+
+  .hero h2 {
+    margin-top: 14px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--blue);
+  }
+
+  .hero p.sub {
+    margin-top: 10px;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+  }
+
+  .btn {
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    border-radius: 10px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: var(--black);
+    padding: 16px 36px;
+    font-size: 1.1rem;
+    margin-top: 30px;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(46, 204, 113, 0.25);
+  }
+
+  .btn-secondary {
+    background: var(--blue);
+    color: var(--black);
+    padding: 14px 30px;
+    font-size: 1rem;
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.25);
+  }
+
+  .btn-full {
+    width: 100%;
+    padding: 16px;
+    font-size: 1.1rem;
+  }
+
+  /* SECTION TITLES */
+  section {
+    padding: 70px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:last-of-type {
+    border-bottom: none;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 40px;
+  }
+
+  .section-title span {
+    color: var(--green);
+  }
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .pricing-card {
+    background: var(--black-card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--green);
+  }
+
+  .pricing-card .bins {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 1px;
+  }
+
+  .pricing-card .price {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: var(--green);
+    margin: 10px 0;
+  }
+
+  .pricing-card .note {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 600px) {
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 420px;
+    }
+  }
+
+  /* HOW IT WORKS */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+  }
+
+  .step-card {
+    background: var(--black-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .step-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--blue);
+  }
+
+  .step-num {
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    border-radius: 50%;
+    background: var(--green);
+    color: var(--black);
+    font-weight: 800;
+    margin: 0 auto 14px;
+  }
+
+  .step-card h3 {
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+  }
+
+  .step-card p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+  }
+
+  /* SERVICE HOURS */
+  .hours-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hours-card {
+    background: var(--black-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 30px 40px;
+    max-width: 420px;
+    width: 100%;
+  }
+
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 1rem;
+  }
+
+  .hours-row:last-child {
+    border-bottom: none;
+  }
+
+  .hours-row .day {
+    font-weight: 700;
+    color: var(--blue);
+  }
+
+  .hours-row .time {
+    color: var(--text-muted);
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  /* FORM */
+  .form-card {
+    max-width: 640px;
+    margin: 0 auto;
+    background: var(--black-card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 36px;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--text-light);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--black-soft);
+    color: var(--text-light);
+    font-size: 0.95rem;
+    font-family: inherit;
+    color-scheme: dark;
+  }
+
+  .bin-days-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .bin-day-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--black-soft);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+
+  .bin-day-row .bin-day-label {
+    flex: 0 0 auto;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    min-width: 62px;
+  }
+
+  .bin-day-row select {
+    flex: 1;
+    margin: 0;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--green);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .promo-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  .promo-row input {
+    flex: 1;
+  }
+
+  .promo-row button {
+    padding: 0 22px;
+    border-radius: 10px;
+    border: none;
+    background: var(--blue);
+    color: var(--black);
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+  }
+
+  .promo-row button:hover {
+    transform: translateY(-2px);
+  }
+
+  #promoMessage {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .promo-valid {
+    color: var(--green);
+  }
+
+  .promo-invalid {
+    color: #e74c3c;
+  }
+
+  .price-summary {
+    background: var(--black-soft);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin: 20px 0;
+  }
+
+  .price-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+
+  .price-line.total {
+    color: var(--text-light);
+    font-weight: 800;
+    font-size: 1.15rem;
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+    padding-top: 10px;
+  }
+
+  .price-line.discount span:last-child {
+    color: var(--green);
+  }
+
+  small.hint {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    margin-top: 6px;
+  }
+
+  /* CONFIRMATION */
+  .confirmation {
+    display: none;
+    max-width: 640px;
+    margin: 30px auto 0;
+    background: var(--black-card);
+    border: 1px solid var(--green);
+    border-radius: 18px;
+    padding: 34px;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .confirmation.show {
+    display: block;
+  }
+
+  .confirmation h3 {
+    color: var(--green);
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+  }
+
+  .confirmation .conf-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+  }
+
+  .confirmation .conf-line:last-child {
+    border-bottom: none;
+  }
+
+  .confirmation .conf-line span:first-child {
+    color: var(--text-muted);
+  }
+
+  /* ADMIN LOGIN MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 300;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .modal-overlay.show {
+    display: flex;
+  }
+
+  .modal-card {
+    background: var(--black-card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 34px;
+    max-width: 360px;
+    width: 100%;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .modal-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  .modal-sub {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+  }
+
+  .modal-card input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--black-soft);
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+
+  .modal-card input:focus {
+    outline: none;
+    border-color: var(--blue);
+  }
+
+  .modal-error {
+    display: none;
+    color: #e74c3c;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .modal-actions .btn {
+    flex: 1;
+    margin-top: 0;
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+
+  /* ADMIN PANEL */
+  .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 34px;
+  }
+
+  .admin-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+  }
+
+  .tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 12px 18px;
+    font-weight: 700;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .tab-btn.active {
+    color: var(--green);
+    border-bottom-color: var(--green);
+  }
+
+  .admin-tab {
+    display: none;
+  }
+
+  .admin-tab.active {
+    display: block;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+  }
+
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 760px;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  .admin-table th {
+    background: var(--black-soft);
+    color: var(--blue);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.5px;
+  }
+
+  .admin-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .admin-table tbody tr:hover {
+    background: var(--black-soft);
+  }
+
+  .badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .badge-active { background: rgba(46, 204, 113, 0.15); color: var(--green); }
+  .badge-inactive { background: rgba(231, 76, 60, 0.15); color: #e74c3c; }
+  .badge-pending { background: rgba(52, 152, 219, 0.15); color: var(--blue); }
+  .badge-confirmed { background: rgba(46, 204, 113, 0.15); color: var(--green); }
+  .badge-completed { background: rgba(255, 255, 255, 0.1); color: var(--text-muted); }
+
+  .mini-btn {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--black-soft);
+    color: var(--text-light);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 6px;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .mini-btn:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+  }
+
+  .mini-btn.danger:hover {
+    border-color: #e74c3c;
+    color: #e74c3c;
+  }
+
+  .status-select {
+    padding: 6px 8px;
+    border-radius: 6px;
+    background: var(--black-soft);
+    border: 1px solid var(--border);
+    color: var(--text-light);
+    font-size: 0.8rem;
+  }
+
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    padding-top: 10px;
+  }
+
+  .checkbox-row input {
+    width: auto;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+  }
+
+  footer .green {
+    color: var(--green);
+  }
+
+  /* RESPONSIVE */
+
+  /* Prevent iOS Safari from auto-zooming when an input is focused
+     (it does this for any input with font-size under 16px). Applies
+     at all sizes since the bug affects any mobile viewport. */
+  .form-group input,
+  .form-group select,
+  .form-group textarea,
+  .promo-row input,
+  .modal-card input {
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding: 60px 16px 50px; }
+    .hero h1 { font-size: 2.2rem; }
+    .hero h2 { font-size: 1.15rem; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .navbar { justify-content: center; text-align: center; padding: 12px 16px; }
+    .nav-right { width: 100%; justify-content: center; }
+    nav ul { gap: 2px; flex-wrap: wrap; justify-content: center; }
+    nav ul li a { padding: 8px 10px; font-size: 0.85rem; }
+    .logo-text { font-size: 1.05rem; }
+    .admin-btn { padding: 8px 12px; font-size: 0.78rem; }
+    .admin-header { justify-content: center; text-align: center; }
+    .admin-header .btn { width: 100%; }
+    .admin-tabs { justify-content: flex-start; }
+    .form-card { padding: 28px 22px; }
+  }
+
+  @media (max-width: 480px) {
+    .steps-grid { grid-template-columns: 1fr; }
+    .hours-card, .form-card { padding: 22px 16px; }
+    .promo-row { flex-direction: column; }
+    .promo-row button { padding: 12px; }
+    .section-title { font-size: 1.6rem; }
+    .modal-card { padding: 26px 20px; max-width: 100%; }
+    .modal-actions { flex-direction: column; }
+    .admin-table th, .admin-table td { font-size: 0.75rem; padding: 10px 8px; }
+    .mini-btn { padding: 8px 12px; font-size: 0.8rem; }
+    .status-select { padding: 8px 10px; }
+    .price-summary { padding: 14px 16px; }
+    .confirmation { padding: 24px 18px; }
+    .confirmation .conf-line { flex-direction: column; gap: 2px; }
+  }
+
+  @media (max-width: 400px) {
+    .bin-day-row { flex-direction: column; align-items: stretch; gap: 6px; }
+    .bin-day-row .bin-day-label { min-width: 0; }
+  }
+
+  @media (max-width: 360px) {
+    .hero h1 { font-size: 1.8rem; }
+    .logo-group img { height: 32px; width: 32px; }
+    .logo-text { font-size: 0.95rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <div class="logo-group" onclick="showPage('home')">
+      <img src="LiamCanLogo.png" alt="LiamCan Logo" onerror="this.style.display='none'">
+      <div class="logo-text">Liam<span>Can</span></div>
+    </div>
+    <div class="nav-right">
+      <nav>
+        <ul>
+          <li><a href="#" id="nav-home" class="active" onclick="showPage('home'); return false;">Home</a></li>
+          <li><a href="#" id="nav-booking" onclick="showPage('booking'); return false;">Booking</a></li>
+        </ul>
+      </nav>
+      <button class="admin-btn" onclick="openAdminLogin()">Admin</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HOME PAGE ===================== -->
+<div id="home" class="page active">
+
+  <div class="hero">
+    <img class="hero-logo" src="LiamCanLogo.png" alt="LiamCan Logo" onerror="this.style.display='none'">
+    <h1>Liam<span class="can">Can</span></h1>
+    <h2>We Clean Your Cans.</h2>
+    <p class="sub">Affordable trash-bin cleaning for your home.</p>
+    <button class="btn btn-primary" onclick="showPage('booking')">Book a Cleaning</button>
+  </div>
+
+  <section id="pricing">
+    <div class="container">
+      <h2 class="section-title">Simple <span>Pricing</span></h2>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="bins">1 BIN</div>
+          <div class="price">$15</div>
+          <div class="note">Regular trash bin cleaning</div>
+        </div>
+        <div class="pricing-card">
+          <div class="bins">2 BINS</div>
+          <div class="price">$30</div>
+          <div class="note">Regular trash bin cleaning</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How It <span>Works</span></h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Book</h3>
+          <p>Choose your cleaning and schedule your service.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Arrive &amp; Move</h3>
+          <p>We arrive and take your bins to our cleaning area.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Clean</h3>
+          <p>We thoroughly clean and scrub your bins.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <h3>Take Back</h3>
+          <p>We return your clean bins to where they were.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="service-hours">
+    <div class="container">
+      <h2 class="section-title">Service <span>Hours</span></h2>
+      <div class="hours-wrap">
+        <div class="hours-card">
+          <div class="hours-row">
+            <span class="day">Friday</span>
+            <span class="time">4:00 PM – 7:00 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="day">Saturday</span>
+            <span class="time">2:00 PM – 9:00 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="day">Sunday</span>
+            <span class="time">2:00 PM – 9:00 PM</span>
+          </div>
+        </div>
+      </div>
+      <div class="center" style="margin-top:30px;">
+        <button class="btn btn-secondary" onclick="showPage('booking')">Book Now</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===================== BOOKING PAGE ===================== -->
+<div id="booking" class="page">
+  <section style="border-bottom:none; padding-top:50px;">
+    <div class="container">
+      <h2 class="section-title">Book Your <span>Cleaning</span></h2>
+
+      <form class="form-card" id="bookingForm">
+
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" required placeholder="John Smith">
+        </div>
+
+        <div class="form-group">
+          <label for="address">Service Address</label>
+          <input type="text" id="address" required placeholder="123 Main St, Baltimore, MD">
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" required placeholder="(555) 123-4567">
+        </div>
+
+        <div class="form-group">
+          <label for="bins">Number of Bins</label>
+          <input type="number" id="bins" required min="1" max="10" step="1" value="1" oninput="updateBinPrice()">
+          <small class="hint">$15 per bin. Maximum 10 bins.</small>
+        </div>
+
+        <div class="form-group" id="binDaysGroup" style="display:none;">
+          <label>Which Day Should Each Bin Be Cleaned?</label>
+          <small class="hint" style="margin-top:0; margin-bottom:10px;">You have more than 4 bins — pick a cleaning day for each one.</small>
+          <div id="binDaysContainer" class="bin-days-container"></div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="day">Preferred Date (Day)</label>
+            <select id="day" required onchange="updateTimeOptions()">
+              <option value="">Select a day</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
+            <small class="hint">We only clean Friday, Saturday &amp; Sunday.</small>
+          </div>
+          <div class="form-group">
+            <label for="time">Preferred Time</label>
+            <select id="time" required disabled>
+              <option value="">Select a day first</option>
+            </select>
+            <small class="hint">Times shown in 5-minute increments.</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="promo">Promo Code</label>
+          <div class="promo-row">
+            <input type="text" id="promo" placeholder="Enter promo code (optional)">
+            <button type="button" onclick="applyPromo()">Apply</button>
+          </div>
+          <div id="promoMessage"></div>
+        </div>
+
+        <div class="price-summary">
+          <div class="price-line">
+            <span>Original Price</span>
+            <span id="originalPriceDisplay">$15.00</span>
+          </div>
+          <div class="price-line discount">
+            <span>Discount</span>
+            <span id="discountDisplay">-$0.00</span>
+          </div>
+          <div class="price-line total">
+            <span>Final Price</span>
+            <span id="finalPriceDisplay">$15.00</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="returnBy">Bins Back By</label>
+          <input type="date" id="returnBy" required>
+          <small class="hint">What date do you need your bins back by?</small>
+        </div>
+
+        <div class="form-group">
+          <label for="notes">Additional Notes</label>
+          <textarea id="notes" required placeholder="Gate code, bin location, special instructions, etc."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">Confirm Booking</button>
+      </form>
+
+      <div class="confirmation" id="confirmationBox">
+        <h3>✅ Booking Confirmed</h3>
+        <div class="conf-line"><span>Name</span><span id="confName"></span></div>
+        <div class="conf-line"><span>Service Address</span><span id="confAddress"></span></div>
+        <div class="conf-line"><span>Number of Bins</span><span id="confBins"></span></div>
+        <div class="conf-line"><span>Date</span><span id="confDate"></span></div>
+        <div class="conf-line"><span>Time</span><span id="confTime"></span></div>
+        <div class="conf-line"><span>Bins Back By</span><span id="confReturnBy"></span></div>
+        <div class="conf-line"><span>Promo Code</span><span id="confPromo"></span></div>
+        <div class="conf-line"><span>Discount</span><span id="confDiscount"></span></div>
+        <div class="conf-line"><span>Final Price</span><span id="confFinal"></span></div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- ===================== ADMIN PANEL PAGE (hidden from nav, login-gated) ===================== -->
+<div id="admin" class="page">
+  <section style="border-bottom:none; padding-top:50px;">
+    <div class="container">
+
+      <div class="admin-header">
+        <h2 class="section-title" style="margin-bottom:0;">Admin <span>Panel</span></h2>
+        <button class="btn btn-secondary" style="margin-top:0;" onclick="logoutAdmin()">Log Out</button>
+      </div>
+
+      <div class="admin-tabs">
+        <button class="tab-btn active" id="tab-promos" onclick="showAdminTab('promos')">Promo Codes</button>
+        <button class="tab-btn" id="tab-bookings" onclick="showAdminTab('bookings')">Bookings</button>
+      </div>
+
+      <!-- PROMO CODES TAB -->
+      <div id="adminPromosTab" class="admin-tab active">
+
+        <div class="form-card" style="margin-bottom:34px;">
+          <h3 style="margin-bottom:18px;">Create Promo Code</h3>
+          <form id="promoForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="newPromoCode">Code</label>
+                <input type="text" id="newPromoCode" required placeholder="e.g. LIAM10">
+              </div>
+              <div class="form-group">
+                <label for="newPromoType">Discount Type</label>
+                <select id="newPromoType">
+                  <option value="dollar">Dollar Amount ($)</option>
+                  <option value="percent">Percentage (%)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="newPromoValue">Discount Value</label>
+                <input type="number" id="newPromoValue" required min="0" step="0.01" placeholder="e.g. 10">
+              </div>
+              <div class="form-group">
+                <label for="newPromoExpiration">Expiration Date (optional)</label>
+                <input type="date" id="newPromoExpiration">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="newPromoMaxUses">Max Uses (optional)</label>
+                <input type="number" id="newPromoMaxUses" min="1" step="1" placeholder="Leave blank for unlimited">
+              </div>
+              <div class="form-group">
+                <label class="checkbox-row" for="newPromoActive">
+                  <input type="checkbox" id="newPromoActive" checked>
+                  Active
+                </label>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">Create Promo Code</button>
+          </form>
+        </div>
+
+        <h3 style="margin-bottom:16px;">Existing Promo Codes</h3>
+        <div class="table-wrap">
+          <table class="admin-table" id="promoTable">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Type</th>
+                <th>Value</th>
+                <th>Expires</th>
+                <th>Max Uses</th>
+                <th>Used</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="promoTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- BOOKINGS TAB -->
+      <div id="adminBookingsTab" class="admin-tab">
+        <h3 style="margin-bottom:16px;">Submitted Bookings</h3>
+        <div class="table-wrap">
+          <table class="admin-table" id="bookingsTable">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Bins</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Back By</th>
+                <th>Promo</th>
+                <th>Discount</th>
+                <th>Final Price</th>
+                <th>Notes</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="bookingsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- ===================== ADMIN LOGIN MODAL ===================== -->
+<div class="modal-overlay" id="adminLoginOverlay">
+  <div class="modal-card">
+    <h3>Admin Login</h3>
+    <p class="modal-sub">Enter the admin code to continue.</p>
+    <div class="modal-error" id="adminLoginError">Incorrect code. Try again.</div>
+    <input type="password" id="adminCodeInput" placeholder="Admin code" maxlength="10" autocomplete="off">
+    <div class="modal-actions">
+      <button type="button" class="btn btn-secondary" onclick="closeAdminLogin()">Cancel</button>
+      <button type="button" class="btn btn-primary" onclick="verifyAdminCode()">Login</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="green">LiamCan</span> — Clean Cans. Fresh Start. &copy; 2026 LiamCan. All rights reserved.
+</footer>
+
+<script>
+  /* =========================================================
+     NAVIGATION
+  ========================================================= */
+  function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+
+    document.getElementById('nav-home').classList.toggle('active', pageId === 'home');
+    document.getElementById('nav-booking').classList.toggle('active', pageId === 'booking');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* =========================================================
+     TIME SLOT GENERATION (5-MINUTE INCREMENTS)
+     ---------------------------------------------------------
+     Slots are generated from the day's opening time up to
+     (but not including) the closing time, in 5-minute steps.
+     EASY TO EDIT: change the start/end minute values below
+     to adjust service hours for each day.
+  ========================================================= */
+  function minutesToLabel(totalMinutes) {
+    let h24 = Math.floor(totalMinutes / 60);
+    let m = totalMinutes % 60;
+    const period = h24 >= 12 ? 'PM' : 'AM';
+    let h12 = h24 % 12;
+    if (h12 === 0) h12 = 12;
+    const mm = m.toString().padStart(2, '0');
+    return `${h12}:${mm} ${period}`;
+  }
+
+  function generateSlots(startMinutes, endMinutes, step = 5) {
+    const slots = [];
+    for (let t = startMinutes; t < endMinutes; t += step) {
+      slots.push(minutesToLabel(t));
+    }
+    return slots;
+  }
+
+  const availability = {
+    "Friday": generateSlots(16 * 60, 19 * 60),   // 4:00 PM – 6:55 PM (closes 7:00 PM)
+    "Saturday": generateSlots(14 * 60, 21 * 60),  // 2:00 PM – 8:55 PM (closes 9:00 PM)
+    "Sunday": generateSlots(14 * 60, 21 * 60)     // 2:00 PM – 8:55 PM (closes 9:00 PM)
+  };
+
+  function updateTimeOptions() {
+    const day = document.getElementById('day').value;
+    const timeSelect = document.getElementById('time');
+    timeSelect.innerHTML = '';
+
+    if (!day || !availability[day]) {
+      timeSelect.disabled = true;
+      const opt = document.createElement('option');
+      opt.value = '';
+      opt.textContent = 'Select a day first';
+      timeSelect.appendChild(opt);
+      return;
+    }
+
+    timeSelect.disabled = false;
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = 'Select a time';
+    timeSelect.appendChild(placeholder);
+
+    availability[day].forEach(t => {
+      const opt = document.createElement('option');
+      opt.value = t;
+      opt.textContent = t;
+      timeSelect.appendChild(opt);
+    });
+  }
+
+  /* =========================================================
+     BIN PRICING
+     ---------------------------------------------------------
+     EASY TO EDIT: Change the per-bin rate here. The customer
+     enters any number of bins and the total is calculated as
+     PRICE_PER_BIN * number of bins.
+  ========================================================= */
+  const PRICE_PER_BIN = 15.00;
+
+  const MAX_BINS = 10;
+  const BIN_DAYS_THRESHOLD = 4;
+
+  let BASE_PRICE = PRICE_PER_BIN; // starts at 1 bin
+
+  function updateBinPrice() {
+    const binsInput = document.getElementById('bins');
+    let count = parseInt(binsInput.value, 10);
+
+    if (isNaN(count) || count < 1) {
+      count = 1;
+      binsInput.value = 1;
+    }
+
+    if (count > MAX_BINS) {
+      count = MAX_BINS;
+      binsInput.value = MAX_BINS;
+    }
+
+    BASE_PRICE = PRICE_PER_BIN * count;
+
+    if (count < 2 && currentPromoCode !== "") {
+      currentDiscount = 0;
+      currentPromoCode = "";
+      const messageEl = document.getElementById('promoMessage');
+      messageEl.textContent = 'Promo codes require 2 or more bins';
+      messageEl.className = 'promo-invalid';
+    }
+
+    renderBinDayFields(count);
+    updatePriceDisplay();
+  }
+
+  /* =========================================================
+     PER-BIN CLEANING DAYS
+     ---------------------------------------------------------
+     When a customer books more than BIN_DAYS_THRESHOLD bins,
+     show one day-select per bin so they can spread bins across
+     different cleaning days if they want to.
+  ========================================================= */
+  function renderBinDayFields(count) {
+    const group = document.getElementById('binDaysGroup');
+    const container = document.getElementById('binDaysContainer');
+
+    if (count <= BIN_DAYS_THRESHOLD) {
+      group.style.display = 'none';
+      container.innerHTML = '';
+      return;
+    }
+
+    group.style.display = 'block';
+
+    // Preserve any selections already made when the count changes
+    const existing = {};
+    container.querySelectorAll('select[data-bin]').forEach(sel => {
+      existing[sel.dataset.bin] = sel.value;
+    });
+
+    container.innerHTML = '';
+    for (let i = 1; i <= count; i++) {
+      const row = document.createElement('div');
+      row.className = 'bin-day-row';
+
+      const label = document.createElement('span');
+      label.className = 'bin-day-label';
+      label.textContent = `Bin ${i}`;
+
+      const select = document.createElement('select');
+      select.dataset.bin = i;
+      select.required = true;
+      select.innerHTML = `
+        <option value="">Select a day</option>
+        <option value="Friday">Friday</option>
+        <option value="Saturday">Saturday</option>
+        <option value="Sunday">Sunday</option>
+      `;
+      if (existing[i]) select.value = existing[i];
+
+      row.appendChild(label);
+      row.appendChild(select);
+      container.appendChild(row);
+    }
+  }
+
+  /* =========================================================
+     LOCAL DATA STORAGE (PROMO CODES + BOOKINGS)
+     ---------------------------------------------------------
+     NOTE TO BUSINESS OWNER:
+     This site has no real backend/server, so promo codes and
+     bookings are saved in the browser's local storage on this
+     device only. That means:
+       - Data will NOT sync across different computers/phones.
+       - Clearing browser data will erase saved codes/bookings.
+       - Two different devices will NOT share the same list.
+     For a real production version, connect this to a proper
+     backend/database (e.g. a small server + database, or a
+     service like Firebase/Supabase) so all bookings and promo
+     codes are stored centrally and safely.
+  ========================================================= */
+  function loadPromoCodes() {
+    const stored = localStorage.getItem('liamcan_promoCodes');
+    if (stored) {
+      try { return JSON.parse(stored); } catch (e) { /* fall through to defaults */ }
+    }
+    const defaults = [
+      { code: "LIAM10", type: "dollar", value: 10, expiration: "", maxUses: null, uses: 0, active: true },
+      { code: "WELCOME5", type: "dollar", value: 5, expiration: "", maxUses: null, uses: 0, active: true },
+      { code: "SUMMER15", type: "dollar", value: 15, expiration: "", maxUses: null, uses: 0, active: true }
+    ];
+    savePromoCodes(defaults);
+    return defaults;
+  }
+
+  function savePromoCodes(list) {
+    localStorage.setItem('liamcan_promoCodes', JSON.stringify(list));
+  }
+
+  function loadBookings() {
+    const stored = localStorage.getItem('liamcan_bookings');
+    if (stored) {
+      try { return JSON.parse(stored); } catch (e) { /* fall through */ }
+    }
+    return [];
+  }
+
+  function saveBookings(list) {
+    localStorage.setItem('liamcan_bookings', JSON.stringify(list));
+  }
+
+  let promoCodeList = loadPromoCodes();
+  let bookingsList = loadBookings();
+
+  /* =========================================================
+     PROMO CODE SYSTEM (CUSTOMER-FACING)
+  ========================================================= */
+  let currentDiscount = 0;
+  let currentPromoCode = "";
+
+  function applyPromo() {
+    const input = document.getElementById('promo');
+    const code = input.value.trim().toUpperCase();
+    const messageEl = document.getElementById('promoMessage');
+    const binsInput = document.getElementById('bins');
+    const binCount = parseInt(binsInput.value, 10) || 1;
+
+    if (code === "") {
+      currentDiscount = 0;
+      currentPromoCode = "";
+      messageEl.textContent = '';
+      messageEl.className = '';
+      updatePriceDisplay();
+      return;
+    }
+
+    if (binCount < 2) {
+      currentDiscount = 0;
+      currentPromoCode = "";
+      messageEl.textContent = 'Promo codes require 2 or more bins';
+      messageEl.className = 'promo-invalid';
+      updatePriceDisplay();
+      return;
+    }
+
+    const promo = promoCodeList.find(p => p.code === code);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    let valid = !!promo;
+
+    if (valid && !promo.active) valid = false;
+
+    if (valid && promo.expiration) {
+      const expDate = new Date(promo.expiration + 'T23:59:59');
+      if (today > expDate) valid = false;
+    }
+
+    if (valid && promo.maxUses !== null && promo.maxUses !== undefined && promo.uses >= promo.maxUses) {
+      valid = false;
+    }
+
+    if (valid) {
+      const discountAmount = promo.type === 'dollar' ? promo.value : (BASE_PRICE * promo.value / 100);
+      currentDiscount = Math.min(discountAmount, BASE_PRICE);
+      currentPromoCode = code;
+      messageEl.textContent = `Promo code "${code}" applied! You saved $${currentDiscount.toFixed(2)}.`;
+      messageEl.className = 'promo-valid';
+    } else {
+      currentDiscount = 0;
+      currentPromoCode = "";
+      messageEl.textContent = 'Invalid or expired promo code';
+      messageEl.className = 'promo-invalid';
+    }
+
+    updatePriceDisplay();
+  }
+
+  function updatePriceDisplay() {
+    const finalPrice = Math.max(BASE_PRICE - currentDiscount, 0);
+    document.getElementById('originalPriceDisplay').textContent = `$${BASE_PRICE.toFixed(2)}`;
+    document.getElementById('discountDisplay').textContent = `-$${currentDiscount.toFixed(2)}`;
+    document.getElementById('finalPriceDisplay').textContent = `$${finalPrice.toFixed(2)}`;
+  }
+
+  /* =========================================================
+     FORM SUBMISSION / CONFIRMATION
+     ---------------------------------------------------------
+     NOTE TO BUSINESS OWNER:
+     This form does NOT email or text anything to you. It saves
+     the booking to local storage (so it shows up in the Admin
+     Panel on THIS device/browser) and displays a confirmation
+     to the customer. To actually receive bookings remotely
+     (via email, SMS, or a real database), connect this form to
+     a backend — for example:
+       - A form service like Formspree, Getform, or Basin
+       - A serverless function (e.g. AWS Lambda, Vercel, Netlify)
+       - Your own server with an email-sending library (Nodemailer, etc.)
+  ========================================================= */
+  document.getElementById('bookingForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('fullName').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const binsInput = document.getElementById('bins');
+    const binCount = parseInt(binsInput.value, 10) || 1;
+    const bins = `${binCount} ${binCount === 1 ? 'Bin' : 'Bins'} — $${(binCount * PRICE_PER_BIN).toFixed(2)}`;
+    const day = document.getElementById('day').value;
+    const time = document.getElementById('time').value;
+    const returnBy = document.getElementById('returnBy').value;
+    const notes = document.getElementById('notes').value.trim();
+
+    if (!day || !time) {
+      alert('Please select a valid day and time for your cleaning.');
+      return;
+    }
+
+    if (!returnBy) {
+      alert('Please select the date you need your bins back by.');
+      return;
+    }
+
+    const finalPrice = Math.max(BASE_PRICE - currentDiscount, 0);
+
+    // Save the booking record (visible in Admin Panel -> Bookings)
+    bookingsList.push({
+      name, address, phone, binCount, day, time, returnBy, notes,
+      promoCode: currentPromoCode,
+      discount: currentDiscount,
+      finalPrice,
+      status: 'Pending',
+      submittedAt: new Date().toLocaleString()
+    });
+    saveBookings(bookingsList);
+
+    // Increment usage count on the promo code, if one was used
+    if (currentPromoCode) {
+      const promo = promoCodeList.find(p => p.code === currentPromoCode);
+      if (promo) {
+        promo.uses += 1;
+        savePromoCodes(promoCodeList);
+      }
+    }
+
+    document.getElementById('confName').textContent = name;
+    document.getElementById('confAddress').textContent = address;
+    document.getElementById('confBins').textContent = bins;
+    document.getElementById('confDate').textContent = day;
+    document.getElementById('confTime').textContent = time;
+    document.getElementById('confReturnBy').textContent = returnBy;
+    document.getElementById('confPromo').textContent = currentPromoCode ? currentPromoCode : 'None';
+    document.getElementById('confDiscount').textContent = `-$${currentDiscount.toFixed(2)}`;
+    document.getElementById('confFinal').textContent = `$${finalPrice.toFixed(2)}`;
+
+    const confirmationBox = document.getElementById('confirmationBox');
+    confirmationBox.classList.add('show');
+    confirmationBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  /* =========================================================
+     ADMIN LOGIN
+     ---------------------------------------------------------
+     SECURITY NOTE — IMPORTANT FOR PRODUCTION USE:
+     This is a single static HTML file with no server, so the
+     admin code below is checked entirely in the browser. That
+     means anyone who views the page source can see this code —
+     it is NOT secure. This is fine for a private/demo tool, but
+     for a real production website, do NOT check the admin code
+     in client-side JavaScript like this. Instead:
+       - Send the entered code to a backend server/API.
+       - Verify it there against a securely stored value
+         (e.g. hashed, in an environment variable or database).
+       - Only unlock the Admin Panel after the backend confirms
+         the code is correct, using a proper session/auth token.
+  ========================================================= */
+  const ADMIN_CODE = "61114";
+
+  function openAdminLogin() {
+    document.getElementById('adminCodeInput').value = '';
+    document.getElementById('adminLoginError').style.display = 'none';
+    document.getElementById('adminLoginOverlay').classList.add('show');
+    document.getElementById('adminCodeInput').focus();
+  }
+
+  function closeAdminLogin() {
+    document.getElementById('adminLoginOverlay').classList.remove('show');
+  }
+
+  function verifyAdminCode() {
+    const entered = document.getElementById('adminCodeInput').value.trim();
+    if (entered === ADMIN_CODE) {
+      closeAdminLogin();
+      openAdminPanel();
+    } else {
+      document.getElementById('adminLoginError').style.display = 'block';
+    }
+  }
+
+  document.getElementById('adminCodeInput').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      verifyAdminCode();
+    }
+  });
+
+  document.getElementById('adminLoginOverlay').addEventListener('click', function (e) {
+    if (e.target === this) closeAdminLogin();
+  });
+
+  function openAdminPanel() {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('admin').classList.add('active');
+    document.getElementById('nav-home').classList.remove('active');
+    document.getElementById('nav-booking').classList.remove('active');
+    renderPromoTable();
+    renderBookingsTable();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function logoutAdmin() {
+    showPage('home');
+  }
+
+  function showAdminTab(tab) {
+    document.getElementById('adminPromosTab').classList.toggle('active', tab === 'promos');
+    document.getElementById('adminBookingsTab').classList.toggle('active', tab === 'bookings');
+    document.getElementById('tab-promos').classList.toggle('active', tab === 'promos');
+    document.getElementById('tab-bookings').classList.toggle('active', tab === 'bookings');
+  }
+
+  /* =========================================================
+     ADMIN: PROMO CODE MANAGEMENT
+  ========================================================= */
+  function renderPromoTable() {
+    const tbody = document.getElementById('promoTableBody');
+    tbody.innerHTML = '';
+
+    if (promoCodeList.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="8" style="color:var(--text-muted);">No promo codes yet.</td></tr>';
+      return;
+    }
+
+    promoCodeList.forEach((p, i) => {
+      const tr = document.createElement('tr');
+      const valueLabel = p.type === 'dollar' ? `$${Number(p.value).toFixed(2)}` : `${p.value}%`;
+      const expLabel = p.expiration ? p.expiration : 'Never';
+      const maxLabel = (p.maxUses === null || p.maxUses === undefined) ? 'Unlimited' : p.maxUses;
+      const statusBadge = p.active
+        ? '<span class="badge badge-active">Active</span>'
+        : '<span class="badge badge-inactive">Inactive</span>';
+
+      tr.innerHTML = `
+        <td>${p.code}</td>
+        <td>${p.type === 'dollar' ? 'Dollar' : 'Percent'}</td>
+        <td>${valueLabel}</td>
+        <td>${expLabel}</td>
+        <td>${maxLabel}</td>
+        <td>${p.uses}</td>
+        <td>${statusBadge}</td>
+        <td>
+          <button class="mini-btn" onclick="togglePromoActive(${i})">${p.active ? 'Deactivate' : 'Activate'}</button>
+          <button class="mini-btn danger" onclick="deletePromoCode(${i})">Delete</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function togglePromoActive(i) {
+    promoCodeList[i].active = !promoCodeList[i].active;
+    savePromoCodes(promoCodeList);
+    renderPromoTable();
+  }
+
+  function deletePromoCode(i) {
+    if (!confirm(`Delete promo code "${promoCodeList[i].code}"?`)) return;
+    promoCodeList.splice(i, 1);
+    savePromoCodes(promoCodeList);
+    renderPromoTable();
+  }
+
+  document.getElementById('promoForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const code = document.getElementById('newPromoCode').value.trim().toUpperCase();
+    const type = document.getElementById('newPromoType').value;
+    const value = parseFloat(document.getElementById('newPromoValue').value);
+    const expiration = document.getElementById('newPromoExpiration').value;
+    const maxUsesRaw = document.getElementById('newPromoMaxUses').value;
+    const maxUses = maxUsesRaw ? parseInt(maxUsesRaw, 10) : null;
+    const active = document.getElementById('newPromoActive').checked;
+
+    if (!code || isNaN(value) || value <= 0) {
+      alert('Please enter a valid code and discount value.');
+      return;
+    }
+
+    if (promoCodeList.some(p => p.code === code)) {
+      alert('A promo code with that name already exists.');
+      return;
+    }
+
+    promoCodeList.push({ code, type, value, expiration, maxUses, uses: 0, active });
+    savePromoCodes(promoCodeList);
+    renderPromoTable();
+
+    this.reset();
+    document.getElementById('newPromoActive').checked = true;
+  });
+
+  /* =========================================================
+     ADMIN: BOOKINGS VIEW
+  ========================================================= */
+  function renderBookingsTable() {
+    const tbody = document.getElementById('bookingsTableBody');
+    tbody.innerHTML = '';
+
+    if (bookingsList.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="12" style="color:var(--text-muted);">No bookings yet.</td></tr>';
+      return;
+    }
+
+    bookingsList.forEach((b, i) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${b.name}</td>
+        <td>${b.address}</td>
+        <td>${b.phone}</td>
+        <td>${b.binCount}</td>
+        <td>${b.day}</td>
+        <td>${b.time}</td>
+        <td>${b.returnBy ? b.returnBy : '—'}</td>
+        <td>${b.promoCode ? b.promoCode : 'None'}</td>
+        <td>-$${b.discount.toFixed(2)}</td>
+        <td>$${b.finalPrice.toFixed(2)}</td>
+        <td>${b.notes ? b.notes : '—'}</td>
+        <td>
+          <select class="status-select" onchange="updateBookingStatus(${i}, this.value)">
+            <option value="Pending" ${b.status === 'Pending' ? 'selected' : ''}>Pending</option>
+            <option value="Confirmed" ${b.status === 'Confirmed' ? 'selected' : ''}>Confirmed</option>
+            <option value="Completed" ${b.status === 'Completed' ? 'selected' : ''}>Completed</option>
+          </select>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function updateBookingStatus(i, status) {
+    bookingsList[i].status = status;
+    saveBookings(bookingsList);
+  }
+
+  // Initialize price display on load
+  updatePriceDisplay();
+</script>
+
+</body>
+</html>
