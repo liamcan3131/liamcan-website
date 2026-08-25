@@ -57,8 +57,10 @@
     max-width: 1100px;
     margin: 0 auto;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
     padding: 14px 20px;
   }
 
@@ -89,7 +91,9 @@
   .nav-right {
     display: flex;
     align-items: center;
-    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
   }
 
   nav ul {
@@ -422,6 +426,36 @@
     color: var(--text-light);
     font-size: 0.95rem;
     font-family: inherit;
+    color-scheme: dark;
+  }
+
+  .bin-days-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .bin-day-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--black-soft);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+
+  .bin-day-row .bin-day-label {
+    flex: 0 0 auto;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    min-width: 62px;
+  }
+
+  .bin-day-row select {
+    flex: 1;
+    margin: 0;
   }
 
   .form-group input:focus,
@@ -783,180 +817,61 @@
   }
 
   /* RESPONSIVE */
+
+  /* Prevent iOS Safari from auto-zooming when an input is focused
+     (it does this for any input with font-size under 16px). Applies
+     at all sizes since the bug affects any mobile viewport. */
+  .form-group input,
+  .form-group select,
+  .form-group textarea,
+  .promo-row input,
+  .modal-card input {
+    font-size: 16px;
+  }
+
   @media (max-width: 768px) {
+    .hero { padding: 60px 16px 50px; }
     .hero h1 { font-size: 2.2rem; }
     .hero h2 { font-size: 1.15rem; }
     .steps-grid { grid-template-columns: 1fr 1fr; }
     .form-row { grid-template-columns: 1fr; }
-    nav ul { gap: 2px; }
+    .navbar { justify-content: center; text-align: center; padding: 12px 16px; }
+    .nav-right { width: 100%; justify-content: center; }
+    nav ul { gap: 2px; flex-wrap: wrap; justify-content: center; }
     nav ul li a { padding: 8px 10px; font-size: 0.85rem; }
     .logo-text { font-size: 1.05rem; }
     .admin-btn { padding: 8px 12px; font-size: 0.78rem; }
+    .admin-header { justify-content: center; text-align: center; }
+    .admin-header .btn { width: 100%; }
+    .admin-tabs { justify-content: flex-start; }
+    .form-card { padding: 28px 22px; }
   }
 
   @media (max-width: 480px) {
     .steps-grid { grid-template-columns: 1fr; }
-    .hours-card, .form-card { padding: 24px 20px; }
+    .hours-card, .form-card { padding: 22px 16px; }
     .promo-row { flex-direction: column; }
+    .promo-row button { padding: 12px; }
+    .section-title { font-size: 1.6rem; }
+    .modal-card { padding: 26px 20px; max-width: 100%; }
+    .modal-actions { flex-direction: column; }
+    .admin-table th, .admin-table td { font-size: 0.75rem; padding: 10px 8px; }
+    .mini-btn { padding: 8px 12px; font-size: 0.8rem; }
+    .status-select { padding: 8px 10px; }
+    .price-summary { padding: 14px 16px; }
+    .confirmation { padding: 24px 18px; }
+    .confirmation .conf-line { flex-direction: column; gap: 2px; }
   }
 
-  /* ============ NEW: service timing note ============ */
-  .service-note {
-    max-width: 640px;
-    margin: 0 auto 24px;
-    background: rgba(52, 152, 219, 0.08);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--blue);
-    border-radius: 10px;
-    padding: 14px 18px;
-    color: var(--text-muted);
-    font-size: 0.88rem;
+  @media (max-width: 400px) {
+    .bin-day-row { flex-direction: column; align-items: stretch; gap: 6px; }
+    .bin-day-row .bin-day-label { min-width: 0; }
   }
 
-  /* ============ NEW: booking id highlight ============ */
-  .conf-line.booking-id span:last-child {
-    color: var(--green);
-    font-weight: 800;
-    letter-spacing: 0.5px;
-  }
-
-  /* ============ NEW: loading / empty state text ============ */
-  .loading-text {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    padding: 16px 0;
-  }
-
-  .form-error {
-    color: #e74c3c;
-    font-size: 0.88rem;
-    font-weight: 600;
-    margin-top: 8px;
-    display: none;
-  }
-
-  .form-error.show {
-    display: block;
-  }
-
-  /* ============ NEW: badges ============ */
-  .badge-cancelled { background: rgba(231, 76, 60, 0.15); color: #e74c3c; }
-
-  /* ============ NEW: admin bookings action buttons ============ */
-  .table-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    align-items: center;
-  }
-
-  /* ============ NEW: booking detail modal ============ */
-  .detail-modal .modal-card {
-    max-width: 480px;
-    text-align: left;
-    max-height: 85vh;
-    overflow-y: auto;
-  }
-
-  .detail-modal .conf-line span:first-child {
-    color: var(--text-muted);
-  }
-
-  /* ============ NEW: admin calendar ============ */
-  .calendar-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 18px;
-    gap: 12px;
-  }
-
-  .calendar-nav h4 {
-    font-size: 1.1rem;
-    font-weight: 800;
-  }
-
-  .calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 6px;
-    margin-bottom: 26px;
-  }
-
-  .calendar-dow {
-    text-align: center;
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    padding-bottom: 4px;
-  }
-
-  .calendar-day {
-    background: var(--black-soft);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    min-height: 64px;
-    padding: 6px 8px;
-    font-size: 0.8rem;
-    cursor: default;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .calendar-day.empty {
-    background: transparent;
-    border-color: transparent;
-  }
-
-  .calendar-day.has-bookings {
-    border-color: var(--green);
-    cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
-
-  .calendar-day.has-bookings:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(46, 204, 113, 0.15);
-  }
-
-  .calendar-day.selected {
-    border-color: var(--blue);
-    box-shadow: 0 0 0 1px var(--blue);
-  }
-
-  .calendar-day .day-num {
-    font-weight: 700;
-    color: var(--text-light);
-  }
-
-  .calendar-day .day-count {
-    font-size: 0.7rem;
-    color: var(--green);
-    font-weight: 700;
-  }
-
-  .calendar-day-detail {
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px;
-    background: var(--black-soft);
-  }
-
-  .calendar-booking-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.9rem;
-    flex-wrap: wrap;
-  }
-
-  .calendar-booking-row:last-child {
-    border-bottom: none;
+  @media (max-width: 360px) {
+    .hero h1 { font-size: 1.8rem; }
+    .logo-group img { height: 32px; width: 32px; }
+    .logo-text { font-size: 0.95rem; }
   }
 </style>
 </head>
@@ -980,7 +895,7 @@
   </div>
 </header>
 
-<!-- ===================== HOME PAGE (unchanged) ===================== -->
+<!-- ===================== HOME PAGE ===================== -->
 <div id="home" class="page active">
 
   <div class="hero">
@@ -1070,54 +985,55 @@
     <div class="container">
       <h2 class="section-title">Book Your <span>Cleaning</span></h2>
 
-      <p class="service-note">
-        Please note: While we do our best to stay on schedule, your bins may occasionally be
-        returned a few hours later than your scheduled time or, in some cases, the following day.
-        We appreciate your patience and understanding.
-      </p>
-
       <form class="form-card" id="bookingForm">
 
-     <div class="form-group">
-  <label for="fullName">Full Name</label>
-  <input type="text" id="fullName" required placeholder="Kyle Busch">
-</div>
-
-<div class="form-group">
-  <label for="address">Service Address</label>
-  <input type="text" id="address" required placeholder="123 Main St, Baltimore, MD 21201">
-  <small class="hint">
-    📍 Please enter your complete address, including house number, street, city, state, and ZIP code.
-    Example: 123 Main St, Baltimore, MD 21201
-  </small>
-</div>
         <div class="form-group">
-          <label for="email">Email (optional)</label>
-          <input type="email" id="email" placeholder="you@example.com">
-          <small class="hint">Only used for your Yardbook service record — not required.</small>
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" required placeholder="John Smith">
+        </div>
+
+        <div class="form-group">
+          <label for="address">Service Address</label>
+          <input type="text" id="address" required placeholder="123 Main St, Baltimore, MD">
+          <small class="hint">Please be specific — include apartment/unit number, gate code, and where the bins are kept (e.g. side yard, alley) so we can find them.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" required placeholder="(555) 123-4567">
         </div>
 
         <div class="form-group">
           <label for="bins">Number of Bins</label>
-          <input type="number" id="bins" required min="1" step="1" value="1" oninput="updateBinPrice()">
-          <small class="hint">$15 per bin.</small>
+          <input type="number" id="bins" required min="1" max="10" step="1" value="1" oninput="updateBinPrice()">
+          <small class="hint">$15 per bin. Maximum 10 bins.</small>
         </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="date">Preferred Date</label>
-            <input type="date" id="date" required onchange="onDateChange()">
+        <div class="form-group" id="binDaysGroup" style="display:none;">
+          <label>Which Day Should Each Bin Be Cleaned?</label>
+          <small class="hint" style="margin-top:0; margin-bottom:10px;">You have more than 4 bins — pick a cleaning day for each one.</small>
+          <div id="binDaysContainer" class="bin-days-container"></div>
+        </div>
+
+        <div class="form-row" id="dateTimeRow">
+          <div class="form-group" id="preferredDateGroup">
+            <label for="day">Preferred Date (Day)</label>
+            <select id="day" required onchange="updateTimeOptions()">
+              <option value="">Select a day</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
             <small class="hint">We only clean Friday, Saturday &amp; Sunday.</small>
           </div>
           <div class="form-group">
             <label for="time">Preferred Time</label>
             <select id="time" required disabled>
-              <option value="">Select a date first</option>
+              <option value="">Select a day first</option>
             </select>
-            <small class="hint">🟢 Available &nbsp; 🔴 Taken — shown in 5-minute increments.</small>
+            <small class="hint">Times shown in 5-minute increments.</small>
           </div>
         </div>
-        <div class="form-error" id="dateError"></div>
 
         <div class="form-group">
           <label for="promo">Promo Code</label>
@@ -1144,23 +1060,33 @@
         </div>
 
         <div class="form-group">
-          <label for="notes">Additional Notes</label>
-          <textarea id="notes" placeholder="Gate code, bin location, special instructions, etc."></textarea>
+          <label for="returnBy">Bins Back By</label>
+          <select id="returnBy" required>
+            <option value="">Select a day</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+          </select>
+          <small class="hint">Which day do you need your bins back by?</small>
         </div>
 
-        <div class="form-error" id="submitError"></div>
+        <div class="form-group">
+          <label for="notes">Additional Notes</label>
+          <textarea id="notes" required placeholder="Gate code, bin location, special instructions, etc."></textarea>
+        </div>
 
-        <button type="submit" class="btn btn-primary btn-full" id="submitBtn">Confirm Booking</button>
+        <button type="submit" class="btn btn-primary btn-full">Confirm Booking</button>
       </form>
 
       <div class="confirmation" id="confirmationBox">
         <h3>✅ Booking Confirmed</h3>
-        <div class="conf-line booking-id"><span>Booking ID</span><span id="confBookingId"></span></div>
         <div class="conf-line"><span>Name</span><span id="confName"></span></div>
         <div class="conf-line"><span>Service Address</span><span id="confAddress"></span></div>
         <div class="conf-line"><span>Number of Bins</span><span id="confBins"></span></div>
-        <div class="conf-line"><span>Date</span><span id="confDate"></span></div>
+        <div class="conf-line" id="confDateRow"><span>Date</span><span id="confDate"></span></div>
+        <div class="conf-line" id="confBinDaysRow" style="display:none;"><span>Bin Cleaning Days</span><span id="confBinDays"></span></div>
         <div class="conf-line"><span>Time</span><span id="confTime"></span></div>
+        <div class="conf-line"><span>Bins Back By</span><span id="confReturnBy"></span></div>
         <div class="conf-line"><span>Promo Code</span><span id="confPromo"></span></div>
         <div class="conf-line"><span>Discount</span><span id="confDiscount"></span></div>
         <div class="conf-line"><span>Final Price</span><span id="confFinal"></span></div>
@@ -1177,851 +1103,5 @@
 
       <div class="admin-header">
         <h2 class="section-title" style="margin-bottom:0;">Admin <span>Panel</span></h2>
-        <button class="btn btn-secondary" style="margin-top:0;" onclick="logoutAdmin()">Log Out</button>
-      </div>
-
-      <div class="admin-tabs">
-        <button class="tab-btn active" id="tab-bookings" onclick="showAdminTab('bookings')">Bookings</button>
-        <button class="tab-btn" id="tab-calendar" onclick="showAdminTab('calendar')">Calendar</button>
-        <button class="tab-btn" id="tab-promos" onclick="showAdminTab('promos')">Promo Codes</button>
-      </div>
-
-      <!-- BOOKINGS TAB -->
-      <div id="adminBookingsTab" class="admin-tab active">
-        <h3 style="margin-bottom:16px;">Submitted Bookings</h3>
-        <div id="bookingsLoading" class="loading-text">Loading bookings…</div>
-        <div class="table-wrap">
-          <table class="admin-table" id="bookingsTable">
-            <thead>
-              <tr>
-                <th>Booking ID</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Phone</th>
-                <th>Bins</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Final Price</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="bookingsTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- CALENDAR TAB -->
-      <div id="adminCalendarTab" class="admin-tab">
-        <div class="calendar-nav">
-          <button class="btn btn-secondary" style="margin-top:0;" onclick="shiftCalendarMonth(-1)">&larr; Prev</button>
-          <h4 id="calendarMonthLabel"></h4>
-          <button class="btn btn-secondary" style="margin-top:0;" onclick="shiftCalendarMonth(1)">Next &rarr;</button>
-        </div>
-        <div class="calendar-grid" id="calendarDowRow"></div>
-        <div class="calendar-grid" id="calendarGrid"></div>
-        <div id="calendarDayDetail"></div>
-      </div>
-
-      <!-- PROMO CODES TAB -->
-      <div id="adminPromosTab" class="admin-tab">
-
-        <div class="form-card" style="margin-bottom:34px;">
-          <h3 style="margin-bottom:18px;">Create Promo Code</h3>
-          <form id="promoForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="newPromoCode">Code</label>
-                <input type="text" id="newPromoCode" required placeholder="e.g. LIAM10">
-              </div>
-              <div class="form-group">
-                <label for="newPromoType">Discount Type</label>
-                <select id="newPromoType">
-                  <option value="dollar">Dollar Amount ($)</option>
-                  <option value="percent">Percentage (%)</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="newPromoValue">Discount Value</label>
-                <input type="number" id="newPromoValue" required min="0" step="0.01" placeholder="e.g. 10">
-              </div>
-              <div class="form-group">
-                <label for="newPromoExpiration">Expiration Date (optional)</label>
-                <input type="date" id="newPromoExpiration">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="newPromoMaxUses">Max Uses (optional)</label>
-                <input type="number" id="newPromoMaxUses" min="1" step="1" placeholder="Leave blank for unlimited">
-              </div>
-              <div class="form-group">
-                <label class="checkbox-row" for="newPromoActive">
-                  <input type="checkbox" id="newPromoActive" checked>
-                  Active
-                </label>
-              </div>
-            </div>
-            <div class="form-error" id="promoFormError"></div>
-            <button type="submit" class="btn btn-primary btn-full">Create Promo Code</button>
-          </form>
-        </div>
-
-        <h3 style="margin-bottom:16px;">Existing Promo Codes</h3>
-        <div id="promoLoading" class="loading-text">Loading promo codes…</div>
-        <div class="table-wrap">
-          <table class="admin-table" id="promoTable">
-            <thead>
-              <tr>
-                <th>Code</th>
-                <th>Type</th>
-                <th>Value</th>
-                <th>Expires</th>
-                <th>Max Uses</th>
-                <th>Used</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="promoTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-
-    </div>
-  </section>
-</div>
-
-<!-- ===================== ADMIN LOGIN MODAL ===================== -->
-<div class="modal-overlay" id="adminLoginOverlay">
-  <div class="modal-card">
-    <h3>Admin Login</h3>
-    <p class="modal-sub">Enter the admin code to continue.</p>
-    <div class="modal-error" id="adminLoginError">Incorrect code. Try again.</div>
-    <input type="password" id="adminCodeInput" placeholder="Admin code" maxlength="10" autocomplete="off">
-    <div class="modal-actions">
-      <button type="button" class="btn btn-secondary" onclick="closeAdminLogin()">Cancel</button>
-      <button type="button" class="btn btn-primary" onclick="verifyAdminCode()">Login</button>
-    </div>
-  </div>
-</div>
-
-<!-- ===================== BOOKING DETAIL MODAL ===================== -->
-<div class="modal-overlay detail-modal" id="bookingDetailOverlay">
-  <div class="modal-card">
-    <h3>Booking Details</h3>
-    <div class="conf-line"><span>Booking ID</span><span id="detailBookingId"></span></div>
-    <div class="conf-line"><span>Status</span><span id="detailStatus"></span></div>
-    <div class="conf-line"><span>Name</span><span id="detailName"></span></div>
-    <div class="conf-line"><span>Address</span><span id="detailAddress"></span></div>
-    <div class="conf-line"><span>Phone</span><span id="detailPhone"></span></div>
-    <div class="conf-line"><span>Bins</span><span id="detailBins"></span></div>
-    <div class="conf-line"><span>Date</span><span id="detailDate"></span></div>
-    <div class="conf-line"><span>Time</span><span id="detailTime"></span></div>
-    <div class="conf-line"><span>Promo Code</span><span id="detailPromo"></span></div>
-    <div class="conf-line"><span>Discount</span><span id="detailDiscount"></span></div>
-    <div class="conf-line"><span>Final Price</span><span id="detailFinal"></span></div>
-    <div class="conf-line"><span>Notes</span><span id="detailNotes"></span></div>
-    <div class="modal-actions">
-      <button type="button" class="btn btn-secondary" onclick="closeBookingDetail()">Close</button>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <span class="green">LiamCan</span> — Clean Cans. Fresh Start. &copy; 2026 LiamCan. All rights reserved.
-</footer>
-
-
-<script>
-  /* =========================================================
-     BACKEND CONFIG
-     ---------------------------------------------------------
-     Change this to your deployed backend's URL once it's live
-     (see server/README.md). Everything below talks to this API
-     instead of localStorage, so availability, promo codes, and
-     bookings are shared across every device — exactly what the
-     spec requires.
-  ========================================================= */
-  const API_BASE = 'https://liamcan-backend-2.onrender.com/api';
-
-  /* =========================================================
-     NAVIGATION
-  ========================================================= */
-  function showPage(pageId) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(pageId).classList.add('active');
-
-    document.getElementById('nav-home').classList.toggle('active', pageId === 'home');
-    document.getElementById('nav-booking').classList.toggle('active', pageId === 'booking');
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  /* =========================================================
-     DATE / TIME SELECTION (backed by real, shared availability)
-  ========================================================= */
-  const dateInput = document.getElementById('date');
-  // Don't let the calendar picker offer past dates.
-  dateInput.min = new Date().toISOString().split('T')[0];
-
-  async function onDateChange() {
-    const date = dateInput.value;
-    const timeSelect = document.getElementById('time');
-    const dateError = document.getElementById('dateError');
-    dateError.classList.remove('show');
-    dateError.textContent = '';
-    timeSelect.innerHTML = '<option value="">Loading times…</option>';
-    timeSelect.disabled = true;
-
-    if (!date) return;
-
-    try {
-      const res = await fetch(`${API_BASE}/availability?date=${encodeURIComponent(date)}`);
-      const data = await res.json();
-
-      if (!res.ok) {
-        dateError.textContent = data.error || 'Could not load availability for that date.';
-        dateError.classList.add('show');
-        timeSelect.innerHTML = '<option value="">Select a date first</option>';
-        return;
-      }
-
-      if (!data.serviceDay) {
-        dateError.textContent = 'We only clean Friday, Saturday & Sunday. Please pick one of those days.';
-        dateError.classList.add('show');
-        timeSelect.innerHTML = '<option value="">Select a valid service date</option>';
-        return;
-      }
-
-      timeSelect.innerHTML = '';
-      const placeholder = document.createElement('option');
-      placeholder.value = '';
-      placeholder.textContent = 'Select a time';
-      timeSelect.appendChild(placeholder);
-
-      data.slots.forEach(slot => {
-        const opt = document.createElement('option');
-        opt.value = slot.minutes;
-        opt.dataset.label = slot.label;
-        const isTaken = slot.status === 'taken';
-        opt.textContent = `${isTaken ? '🔴' : '🟢'} ${slot.label}${isTaken ? ' (Taken)' : ''}`;
-        opt.disabled = isTaken;
-        timeSelect.appendChild(opt);
-      });
-
-      timeSelect.disabled = false;
-    } catch (err) {
-      dateError.textContent = 'Could not reach the booking server. Please try again.';
-      dateError.classList.add('show');
-      timeSelect.innerHTML = '<option value="">Select a date first</option>';
-    }
-  }
-
-  /* =========================================================
-     BIN PRICING (display only — final price is always
-     recomputed and enforced by the backend on submit)
-  ========================================================= */
-  const PRICE_PER_BIN = 15.00;
-  let BASE_PRICE = PRICE_PER_BIN;
-
-  function updateBinPrice() {
-    const binsInput = document.getElementById('bins');
-    let count = parseInt(binsInput.value, 10);
-
-    if (isNaN(count) || count < 1) {
-      count = 1;
-      binsInput.value = 1;
-    }
-
-    BASE_PRICE = PRICE_PER_BIN * count;
-
-    // Re-check the currently applied promo against the new bin count
-    // (percentage discounts and the 2-bin minimum both depend on it).
-    if (currentPromoCode) {
-      applyPromo();
-    } else {
-      updatePriceDisplay();
-    }
-  }
-
-  function updatePriceDisplay() {
-    const finalPrice = Math.max(BASE_PRICE - currentDiscount, 0);
-    document.getElementById('originalPriceDisplay').textContent = `$${BASE_PRICE.toFixed(2)}`;
-    document.getElementById('discountDisplay').textContent = `-$${currentDiscount.toFixed(2)}`;
-    document.getElementById('finalPriceDisplay').textContent = `$${finalPrice.toFixed(2)}`;
-  }
-
-  /* =========================================================
-     PROMO CODE (validated against the real backend)
-  ========================================================= */
-  let currentDiscount = 0;
-  let currentPromoCode = "";
-
-  async function applyPromo() {
-    const input = document.getElementById('promo');
-    const code = input.value.trim();
-    const messageEl = document.getElementById('promoMessage');
-    const binsInput = document.getElementById('bins');
-    const binCount = parseInt(binsInput.value, 10) || 1;
-
-    if (code === "") {
-      currentDiscount = 0;
-      currentPromoCode = "";
-      messageEl.textContent = '';
-      messageEl.className = '';
-      updatePriceDisplay();
-      return;
-    }
-
-    try {
-      const res = await fetch(`${API_BASE}/promo/validate`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code, binCount }),
-      });
-      const result = await res.json();
-
-      if (result.valid) {
-        currentDiscount = result.discount;
-        currentPromoCode = result.code;
-        messageEl.textContent = result.message;
-        messageEl.className = 'promo-valid';
-      } else {
-        currentDiscount = 0;
-        currentPromoCode = "";
-        messageEl.textContent = result.message || 'Invalid or expired promo code';
-        messageEl.className = 'promo-invalid';
-      }
-    } catch (err) {
-      currentDiscount = 0;
-      currentPromoCode = "";
-      messageEl.textContent = 'Could not check that code right now. Please try again.';
-      messageEl.className = 'promo-invalid';
-    }
-
-    updatePriceDisplay();
-  }
-
-  /* =========================================================
-     FORM SUBMISSION -> POST /api/bookings
-  ========================================================= */
-  document.getElementById('bookingForm').addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    const submitBtn = document.getElementById('submitBtn');
-    const submitError = document.getElementById('submitError');
-    submitError.classList.remove('show');
-    submitError.textContent = '';
-
-    const name = document.getElementById('fullName').value.trim();
-    const address = document.getElementById('address').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const binsInput = document.getElementById('bins');
-    const binCount = parseInt(binsInput.value, 10) || 1;
-    const date = document.getElementById('date').value;
-    const timeSelect = document.getElementById('time');
-    const timeMinutes = timeSelect.value;
-    const timeLabel = timeSelect.selectedOptions[0] ? timeSelect.selectedOptions[0].dataset.label : '';
-    const notes = document.getElementById('notes').value.trim();
-
-    if (!date || timeMinutes === '') {
-      submitError.textContent = 'Please select a valid date and time for your cleaning.';
-      submitError.classList.add('show');
-      return;
-    }
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Booking…';
-
-    try {
-      const res = await fetch(`${API_BASE}/bookings`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name, address, phone, email, binCount,
-          date, timeMinutes, timeLabel, notes,
-          promoCode: currentPromoCode || undefined,
-        }),
-      });
-      const data = await res.json();
-
-      if (!res.ok) {
-        submitError.textContent = data.error || 'Something went wrong. Please try again.';
-        submitError.classList.add('show');
-        // The slot may have just been taken by someone else — refresh the list.
-        if (res.status === 409) onDateChange();
-        return;
-      }
-
-      const b = data.booking;
-      document.getElementById('confBookingId').textContent = b.booking_code;
-      document.getElementById('confName').textContent = b.name;
-      document.getElementById('confAddress').textContent = b.address;
-      document.getElementById('confBins').textContent = `${b.bin_count} ${b.bin_count === 1 ? 'Bin' : 'Bins'}`;
-      document.getElementById('confDate').textContent = `${b.date} (${b.day_of_week})`;
-      document.getElementById('confTime').textContent = b.time_label;
-      document.getElementById('confPromo').textContent = b.promo_code ? b.promo_code : 'None';
-      document.getElementById('confDiscount').textContent = `-$${b.discount.toFixed(2)}`;
-      document.getElementById('confFinal').textContent = `$${b.final_price.toFixed(2)}`;
-
-      const confirmationBox = document.getElementById('confirmationBox');
-      confirmationBox.classList.add('show');
-      confirmationBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-      this.reset();
-      dateInput.min = new Date().toISOString().split('T')[0];
-      timeSelect.innerHTML = '<option value="">Select a date first</option>';
-      timeSelect.disabled = true;
-      currentDiscount = 0;
-      currentPromoCode = "";
-      document.getElementById('promoMessage').textContent = '';
-      BASE_PRICE = PRICE_PER_BIN;
-      updatePriceDisplay();
-    } catch (err) {
-      submitError.textContent = 'Could not reach the booking server. Please check your connection and try again.';
-      submitError.classList.add('show');
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Confirm Booking';
-    }
-  });
-
-  updatePriceDisplay();
-
-  /* =========================================================
-     ADMIN LOGIN
-     ---------------------------------------------------------
-     The admin code is checked entirely on the backend against a
-     bcrypt hash (see server/auth.js) — it is never present in
-     this file. A successful login returns a short-lived signed
-     token, kept only in this tab's sessionStorage.
-  ========================================================= */
-  let adminToken = sessionStorage.getItem('liamcan_admin_token') || null;
-
-  function openAdminLogin() {
-    document.getElementById('adminCodeInput').value = '';
-    document.getElementById('adminLoginError').style.display = 'none';
-    document.getElementById('adminLoginOverlay').classList.add('show');
-    document.getElementById('adminCodeInput').focus();
-  }
-
-  function closeAdminLogin() {
-    document.getElementById('adminLoginOverlay').classList.remove('show');
-  }
-
-  async function verifyAdminCode() {
-    const entered = document.getElementById('adminCodeInput').value.trim();
-    const errorEl = document.getElementById('adminLoginError');
-
-    try {
-      const res = await fetch(`${API_BASE}/admin/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code: entered }),
-      });
-      const data = await res.json();
-
-      if (!res.ok) {
-        errorEl.textContent = data.error || 'Incorrect code. Try again.';
-        errorEl.style.display = 'block';
-        return;
-      }
-
-      adminToken = data.token;
-      sessionStorage.setItem('liamcan_admin_token', adminToken);
-      closeAdminLogin();
-      openAdminPanel();
-    } catch (err) {
-      errorEl.textContent = 'Could not reach the server. Please try again.';
-      errorEl.style.display = 'block';
-    }
-  }
-
-  document.getElementById('adminCodeInput').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      verifyAdminCode();
-    }
-  });
-
-  document.getElementById('adminLoginOverlay').addEventListener('click', function (e) {
-    if (e.target === this) closeAdminLogin();
-  });
-
-  // Helper: authenticated fetch for every /api/admin/* call.
-  async function adminFetch(path, options = {}) {
-    const res = await fetch(`${API_BASE}${path}`, {
-      ...options,
-      headers: {
-        ...(options.headers || {}),
-        Authorization: `Bearer ${adminToken}`,
-      },
-    });
-    if (res.status === 401) {
-      sessionStorage.removeItem('liamcan_admin_token');
-      adminToken = null;
-      showPage('home');
-      openAdminLogin();
-      throw new Error('Admin session expired. Please log in again.');
-    }
-    return res;
-  }
-
-  function openAdminPanel() {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById('admin').classList.add('active');
-    document.getElementById('nav-home').classList.remove('active');
-    document.getElementById('nav-booking').classList.remove('active');
-    loadAdminBookings();
-    loadAdminPromos();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function logoutAdmin() {
-    sessionStorage.removeItem('liamcan_admin_token');
-    adminToken = null;
-    showPage('home');
-  }
-
-  function showAdminTab(tab) {
-    document.getElementById('tab-bookings').classList.toggle('active', tab === 'bookings');
-    document.getElementById('tab-calendar').classList.toggle('active', tab === 'calendar');
-    document.getElementById('tab-promos').classList.toggle('active', tab === 'promos');
-    document.getElementById('adminBookingsTab').classList.toggle('active', tab === 'bookings');
-    document.getElementById('adminCalendarTab').classList.toggle('active', tab === 'calendar');
-    document.getElementById('adminPromosTab').classList.toggle('active', tab === 'promos');
-    if (tab === 'calendar') renderCalendar();
-  }
-
-  /* =========================================================
-     ADMIN: BOOKINGS
-  ========================================================= */
-  let adminBookings = [];
-
-  async function loadAdminBookings() {
-    const loadingEl = document.getElementById('bookingsLoading');
-    loadingEl.style.display = 'block';
-    try {
-      const res = await adminFetch('/admin/bookings');
-      const data = await res.json();
-      adminBookings = data.bookings || [];
-      renderBookingsTable();
-    } catch (err) {
-      // adminFetch already redirects to login on 401; anything else, show nothing quietly.
-    } finally {
-      loadingEl.style.display = 'none';
-    }
-  }
-
-  function statusBadge(status) {
-    const cls = {
-      Pending: 'badge-pending',
-      Confirmed: 'badge-confirmed',
-      Completed: 'badge-completed',
-      Cancelled: 'badge-cancelled',
-    }[status] || 'badge-pending';
-    return `<span class="badge ${cls}">${status}</span>`;
-  }
-
-  function renderBookingsTable() {
-    const tbody = document.getElementById('bookingsTableBody');
-    tbody.innerHTML = '';
-
-    if (adminBookings.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="10" style="color:var(--text-muted);">No bookings yet.</td></tr>';
-      return;
-    }
-
-    adminBookings.forEach((b) => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${b.booking_code}</td>
-        <td>${b.name}</td>
-        <td>${b.address}</td>
-        <td>${b.phone}</td>
-        <td>${b.bin_count}</td>
-        <td>${b.date}</td>
-        <td>${b.time_label}</td>
-        <td>$${b.final_price.toFixed(2)}</td>
-        <td>${statusBadge(b.status)}</td>
-        <td>
-          <div class="table-actions">
-            <button class="mini-btn" onclick="openBookingDetail(${b.id})">View</button>
-            <select class="status-select" onchange="updateBookingStatus(${b.id}, this.value)">
-              <option value="Pending" ${b.status === 'Pending' ? 'selected' : ''}>Pending</option>
-              <option value="Confirmed" ${b.status === 'Confirmed' ? 'selected' : ''}>Confirmed</option>
-              <option value="Completed" ${b.status === 'Completed' ? 'selected' : ''}>Completed</option>
-              <option value="Cancelled" ${b.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
-            </select>
-          </div>
-        </td>
-      `;
-      tbody.appendChild(tr);
-    });
-  }
-
-  async function updateBookingStatus(id, status) {
-    if (status === 'Confirmed' && !confirm('Confirm this booking? The customer will get a text confirming it.')) {
-      loadAdminBookings();
-      return;
-    }
-    if (status === 'Cancelled' && !confirm('Cancel this booking? The customer will get a text letting them know.')) {
-      loadAdminBookings();
-      return;
-    }
-
-    try {
-      const res = await adminFetch(`/admin/bookings/${id}/status`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        alert(data.error || 'Could not update that booking.');
-      }
-    } catch (err) {
-      // handled by adminFetch (session expiry) or ignored
-    }
-    loadAdminBookings();
-  }
-
-  function openBookingDetail(id) {
-    const b = adminBookings.find(x => x.id === id);
-    if (!b) return;
-    document.getElementById('detailBookingId').textContent = b.booking_code;
-    document.getElementById('detailStatus').innerHTML = statusBadge(b.status);
-    document.getElementById('detailName').textContent = b.name;
-    document.getElementById('detailAddress').textContent = b.address;
-    document.getElementById('detailPhone').textContent = b.phone;
-    document.getElementById('detailBins').textContent = b.bin_count;
-    document.getElementById('detailDate').textContent = `${b.date} (${b.day_of_week})`;
-    document.getElementById('detailTime').textContent = b.time_label;
-    document.getElementById('detailPromo').textContent = b.promo_code ? b.promo_code : 'None';
-    document.getElementById('detailDiscount').textContent = `-$${b.discount.toFixed(2)}`;
-    document.getElementById('detailFinal').textContent = `$${b.final_price.toFixed(2)}`;
-    document.getElementById('detailNotes').textContent = b.notes ? b.notes : '—';
-    document.getElementById('bookingDetailOverlay').classList.add('show');
-  }
-
-  function closeBookingDetail() {
-    document.getElementById('bookingDetailOverlay').classList.remove('show');
-  }
-
-  document.getElementById('bookingDetailOverlay').addEventListener('click', function (e) {
-    if (e.target === this) closeBookingDetail();
-  });
-
-  /* =========================================================
-     ADMIN: CALENDAR
-  ========================================================= */
-  let calendarCursor = new Date(); // first-of-month tracker
-  calendarCursor.setDate(1);
-  let selectedCalendarDate = null;
-
-  function shiftCalendarMonth(delta) {
-    calendarCursor.setMonth(calendarCursor.getMonth() + delta);
-    selectedCalendarDate = null;
-    renderCalendar();
-  }
-
-  function toDateStr(y, m, d) {
-    return `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-  }
-
-  function renderCalendar() {
-    const monthLabel = document.getElementById('calendarMonthLabel');
-    const dowRow = document.getElementById('calendarDowRow');
-    const grid = document.getElementById('calendarGrid');
-    const detail = document.getElementById('calendarDayDetail');
-
-    const year = calendarCursor.getFullYear();
-    const month = calendarCursor.getMonth();
-    monthLabel.textContent = calendarCursor.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-
-    dowRow.innerHTML = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
-      .map(d => `<div class="calendar-dow">${d}</div>`).join('');
-
-    const firstDow = new Date(year, month, 1).getDay();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    // Group this month's bookings by date.
-    const byDate = {};
-    adminBookings.forEach(b => {
-      if (!byDate[b.date]) byDate[b.date] = [];
-      byDate[b.date].push(b);
-    });
-
-    let html = '';
-    for (let i = 0; i < firstDow; i++) {
-      html += '<div class="calendar-day empty"></div>';
-    }
-    for (let d = 1; d <= daysInMonth; d++) {
-      const dateStr = toDateStr(year, month, d);
-      const dayBookings = byDate[dateStr] || [];
-      const hasBookings = dayBookings.length > 0;
-      const selected = dateStr === selectedCalendarDate;
-      html += `
-        <div class="calendar-day ${hasBookings ? 'has-bookings' : ''} ${selected ? 'selected' : ''}"
-             ${hasBookings ? `onclick="selectCalendarDay('${dateStr}')"` : ''}>
-          <span class="day-num">${d}</span>
-          ${hasBookings ? `<span class="day-count">${dayBookings.length} booking${dayBookings.length > 1 ? 's' : ''}</span>` : ''}
-        </div>
-      `;
-    }
-    grid.innerHTML = html;
-
-    if (selectedCalendarDate && byDate[selectedCalendarDate]) {
-      const rows = byDate[selectedCalendarDate]
-        .sort((a, b) => a.time_minutes - b.time_minutes)
-        .map(b => `
-          <div class="calendar-booking-row">
-            <span><strong>${b.time_label}</strong> — ${b.name} (${b.booking_code})</span>
-            <span class="table-actions">
-              ${statusBadge(b.status)}
-              <button class="mini-btn" onclick="openBookingDetail(${b.id})">View</button>
-            </span>
-          </div>
-        `).join('');
-      detail.innerHTML = `
-        <div class="calendar-day-detail">
-          <h4 style="margin-bottom:10px;">${selectedCalendarDate}</h4>
-          ${rows}
-        </div>
-      `;
-    } else {
-      detail.innerHTML = '';
-    }
-  }
-
-  function selectCalendarDay(dateStr) {
-    selectedCalendarDate = dateStr;
-    renderCalendar();
-  }
-
-  /* =========================================================
-     ADMIN: PROMO CODE MANAGEMENT
-  ========================================================= */
-  let adminPromoCodes = [];
-
-  async function loadAdminPromos() {
-    const loadingEl = document.getElementById('promoLoading');
-    loadingEl.style.display = 'block';
-    try {
-      const res = await adminFetch('/admin/promo');
-      const data = await res.json();
-      adminPromoCodes = data.promoCodes || [];
-      renderPromoTable();
-    } catch (err) {
-      // handled by adminFetch
-    } finally {
-      loadingEl.style.display = 'none';
-    }
-  }
-
-  function renderPromoTable() {
-    const tbody = document.getElementById('promoTableBody');
-    tbody.innerHTML = '';
-
-    if (adminPromoCodes.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="8" style="color:var(--text-muted);">No promo codes yet.</td></tr>';
-      return;
-    }
-
-    adminPromoCodes.forEach((p) => {
-      const tr = document.createElement('tr');
-      const valueLabel = p.type === 'dollar' ? `$${Number(p.value).toFixed(2)}` : `${p.value}%`;
-      const expLabel = p.expiration ? p.expiration : 'Never';
-      const maxLabel = (p.max_uses === null || p.max_uses === undefined) ? 'Unlimited' : p.max_uses;
-      const statusBadgeHtml = p.active
-        ? '<span class="badge badge-active">Active</span>'
-        : '<span class="badge badge-inactive">Inactive</span>';
-
-      tr.innerHTML = `
-        <td>${p.code}</td>
-        <td>${p.type === 'dollar' ? 'Dollar' : 'Percent'}</td>
-        <td>${valueLabel}</td>
-        <td>${expLabel}</td>
-        <td>${maxLabel}</td>
-        <td>${p.uses}</td>
-        <td>${statusBadgeHtml}</td>
-        <td>
-          <button class="mini-btn" onclick="togglePromoActive(${p.id}, ${p.active ? 0 : 1})">${p.active ? 'Deactivate' : 'Activate'}</button>
-          <button class="mini-btn danger" onclick="deletePromoCode(${p.id}, '${p.code}')">Delete</button>
-        </td>
-      `;
-      tbody.appendChild(tr);
-    });
-  }
-
-  async function togglePromoActive(id, nextActive) {
-    try {
-      await adminFetch(`/admin/promo/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ active: !!nextActive }),
-      });
-    } catch (err) { /* handled by adminFetch */ }
-    loadAdminPromos();
-  }
-
-  async function deletePromoCode(id, code) {
-    if (!confirm(`Delete promo code "${code}"?`)) return;
-    try {
-      await adminFetch(`/admin/promo/${id}`, { method: 'DELETE' });
-    } catch (err) { /* handled by adminFetch */ }
-    loadAdminPromos();
-  }
-
-  document.getElementById('promoForm').addEventListener('submit', async function (e) {
-    e.preventDefault();
-    const errorEl = document.getElementById('promoFormError');
-    errorEl.classList.remove('show');
-
-    const code = document.getElementById('newPromoCode').value.trim().toUpperCase();
-    const type = document.getElementById('newPromoType').value;
-    const value = parseFloat(document.getElementById('newPromoValue').value);
-    const expiration = document.getElementById('newPromoExpiration').value;
-    const maxUsesRaw = document.getElementById('newPromoMaxUses').value;
-    const maxUses = maxUsesRaw ? parseInt(maxUsesRaw, 10) : null;
-    const active = document.getElementById('newPromoActive').checked;
-
-    if (!code || isNaN(value) || value <= 0) {
-      errorEl.textContent = 'Please enter a valid code and discount value.';
-      errorEl.classList.add('show');
-      return;
-    }
-
-    try {
-      const res = await adminFetch('/admin/promo', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code, type, value, expiration, maxUses, active }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        errorEl.textContent = data.error || 'Could not create that promo code.';
-        errorEl.classList.add('show');
-        return;
-      }
-      this.reset();
-      document.getElementById('newPromoActive').checked = true;
-      loadAdminPromos();
-    } catch (err) {
-      errorEl.textContent = 'Could not reach the server. Please try again.';
-      errorEl.classList.add('show');
-    }
-  });
-
-  // If we still have a valid admin session from earlier in this tab, don't
-  // force a re-login on refresh — but only reveal the panel, never assume
-  // it's safe to skip re-checking with the server (adminFetch verifies
-  // the token on every call and logs out automatically if it's expired).
-</script>
-
-</body>
-</html>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn btn-secondary"
